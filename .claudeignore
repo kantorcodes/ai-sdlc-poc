@@ -1,4 +1,8 @@
-# .claudeignore - Files Claude Code MUST NOT read, modify, or reference
+# .claudeignore - reference patterns, NOT enforced by Claude Code
+# Claude Code does not read this file. The paths below are not access controls.
+# For Read-tool restrictions use permissions.deny in .claude/settings.json;
+# OS/sandbox controls are needed for restrictions outside Claude Code's tools.
+# See https://code.claude.com/docs/en/permissions
 
 # Infrastructure & Pipeline (read-only context only)
 Jenkinsfile
