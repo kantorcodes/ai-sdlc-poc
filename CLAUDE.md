@@ -2,6 +2,22 @@
 # This file is read by Claude Code before every session.
 # It defines the rules, boundaries, and standards that Claude MUST follow in this repository.
 
+## What the guardrails actually enforce
+
+This document gives instructions to the coding agent. It is not a sandbox or a
+deterministic control over what the agent can read, edit, or run. Claude Code
+does not enforce `.claudeignore` at all. The `claude_code_settings` object
+currently in `.claude/settings.json` is a project-specific example, not the
+documented Claude Code `permissions.deny` format. Do not rely on either
+file to protect credentials or infrastructure.
+
+For supported Claude Code tools, configure actual `Read(...)`, `Edit(...)`,
+or `Bash(...)` deny rules under `permissions.deny` following
+[Claude Code permissions](https://code.claude.com/docs/en/permissions).
+Use operating-system permissions and isolation for stronger boundaries.
+CI checks run after code changes; they do not prevent an agent from reading
+a sensitive file during its session.
+
 ## 🔐 SECURITY GUARDRAILS (Non-Negotiable)
 
 ### Secrets & Credentials
@@ -110,4 +126,4 @@ This enables the Responsible AI metrics pipeline to track AI contribution ratios
 4. If unsure about a requirement, ask — do not assume and generate
 
 ---
-*These guidelines are enforced both by Claude Code's behavior and validated by the Jenkins pipeline.*
+*These are agent instructions and CI review expectations, not proof of runtime access control. Verify any actual restrictions against the supported configuration and recorded test results.*
