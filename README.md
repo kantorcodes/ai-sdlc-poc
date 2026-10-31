@@ -39,13 +39,29 @@
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
+### Claude Code permissions: important limitation
+
+The `.claudeignore` file in this PoC is a reference list only. Claude Code
+does **not** enforce it, so its patterns cannot protect secrets or stop reads.
+The project's `.claude/settings.json` contains custom `claude_code_settings`
+keys rather than the documented Claude Code `permissions.deny` schema.
+Do not treat those example keys as active security restrictions.
+
+To restrict Claude Code's supported file and shell tools, configure
+`Read(...)`, `Edit(...)`, and `Bash(...)` deny rules as documented in
+[Claude Code permissions](https://code.claude.com/docs/en/permissions).
+Tool permission rules do not replace OS permissions, container isolation,
+or independent CI gates. The separate Jenkins checks can detect specific
+policy violations after a change; their coverage depends on their actual
+configuration and must be verified.
+
 ---
 
 ## 🎯 Business Value
 
 | Capability | Business Outcome |
 |---|---|
-| AI Guardrail Configs | Reduces IP/data leakage risk; enforces standards before commit |
+| AI Guardrail Configs | Agent guidance; enforce access with supported Claude Code rules and OS controls |
 | Jenkins AI Policy Gate | Automated compliance — zero manual gatekeeping overhead |
 | Responsible AI Metrics | Audit-ready trail of every AI-assisted change |
 | AI Code Review Agent | 10x faster PR reviews; consistent quality bar |
